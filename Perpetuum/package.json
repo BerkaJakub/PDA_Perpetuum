@@ -1,7 +1,7 @@
 {
-  "name": "ionic-hello-world",
-  "version": "0.0.0",
-  "author": "Ionic Framework",
+  "name": "vyzkumne-perpetuum",
+  "version": "0.0.1",
+  "author": "Jakub Berka, Ollie Momentík",
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
@@ -23,6 +23,8 @@
     "@ionic-native/splash-screen": "3.4.2",
     "@ionic-native/status-bar": "3.4.2",
     "@ionic/storage": "2.0.1",
+    "angularfire2": "^2.0.0-beta.8",
+    "firebase": "^3.8.0",
     "ionic-angular": "3.0.1",
     "ionicons": "3.0.0",
     "rxjs": "5.1.1",
@@ -31,6 +33,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.3.0",
+    "@types/request": "0.0.30",
     "typescript": "~2.2.1"
   },
   "cordovaPlugins": [
@@ -42,5 +45,5 @@
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [],
-  "description": "Perpetuum: An Ionic project"
+  "description": "Perpetuum: projektik"
 }

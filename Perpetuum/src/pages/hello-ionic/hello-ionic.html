@@ -20,4 +20,12 @@
     <button ion-button color="primary" menuToggle>Hlavní nabídka</button>
   </p>
 
+  <h2>Seznam otázek</h2>
+  <ion-list>
+    <ion-item *ngFor="let q of questions | async">
+    <p>{{q.text}}</p>
+    <p>Počet odpovědí: {{q.numAnswers}}</p>
+    </ion-item> 
+  </ion-list>
+
 </ion-content>
