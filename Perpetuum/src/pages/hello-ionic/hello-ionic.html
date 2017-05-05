@@ -26,15 +26,10 @@
     <p>{{q.text}}</p>
     <p>Počet odpovědí: {{q.numAnswers}}</p>
     </ion-item> 
-
-    <ion-list>
-    <ion-item *ngFor="let a of q.answers">
-      <p>{{a.value}}</p>
     
-    </ion-item> 
   </ion-list>
 
-  </ion-list>
+  <button ion-button (click)="newQuestion()">Nová otázka </button>
 
   
 

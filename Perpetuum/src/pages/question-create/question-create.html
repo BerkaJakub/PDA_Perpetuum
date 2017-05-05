@@ -1,0 +1,30 @@
+<ion-header>
+   <ion-navbar>
+      <ion-title>Nová otázka</ion-title>
+       </ion-navbar>
+        </ion-header>
+         <ion-content padding class="question-create">
+            <ion-item>
+               <ion-label stacked>Otázka:</ion-label>
+                <ion-input [(ngModel)]="name" type="text" placeholder="Text otázky"></ion-input>
+             </ion-item>
+
+            <ion-list>
+              <ion-item *ngFor="let answer of answerList; let i = index; trackBy: customTrackBy">
+                <ion-label stacked primary>Odpověď</ion-label>
+                <ion-input type="text" [(ngModel)]="answerList[i]"></ion-input>
+              </ion-item>
+            </ion-list>
+
+             <ion-item>
+                 <ion-label>Od:</ion-label>
+                 <ion-datetime displayFormat="DD. MM. YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="fromDate"></ion-datetime>
+             </ion-item> 
+
+             <ion-item>
+                 <ion-label>Do:</ion-label>
+                 <ion-datetime displayFormat="DD. MM. YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="toDate"></ion-datetime>
+             </ion-item> 
+
+            <button block (click)="createQuestion(name, answerList, fromDate, toDate)"> Vytvořit </button>
+         </ion-content>
