@@ -10,27 +10,29 @@
 
 <ion-content padding>
 
-  <h3>Nejsou k dispozici žádné otázky!</h3>
-
-  <p>
-    PRDELEEEE
-  </p>
+  
   
   <p>
     <button ion-button color="primary" menuToggle>Hlavní nabídka</button>
   </p>
 
-  <h2>Seznam otázek</h2>
-  <ion-list>
+  <ion-card *ngFor="let card of questions | async">
+    <ion-card-content>
+      <ion-card-title>
+        {{card.title}}
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
+  <!--<ion-list>
     <ion-item *ngFor="let q of questions | async">
     <p>{{q.text}}</p>
     <p>Počet odpovědí: {{q.numAnswers}}</p>
     </ion-item> 
     
-  </ion-list>
+  </ion-list> 
 
   <button ion-button (click)="newQuestion()">Nová otázka </button>
 
-  
+  !-->
 
 </ion-content>
