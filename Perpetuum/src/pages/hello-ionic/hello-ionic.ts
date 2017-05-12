@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 //import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import { NavController, NavParams } from 'ionic-angular';
-//import {QuestionCreate} from '../question-create/question-create';
+import {QuestionCreate} from '../question-create/question-create';
 
 
 const questionsData = [{
@@ -32,5 +32,8 @@ export class HelloIonicPage {
     
   }
   
- 
+  newQuestion(){
+    this.navCtrl.push(QuestionCreate);
+  }
+  
 }
