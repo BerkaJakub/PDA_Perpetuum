@@ -16,23 +16,6 @@
     <button ion-button color="primary" menuToggle>Hlavní nabídka</button>
   </p>
 
-  <ion-card *ngFor="let card of questions | async">
-    <ion-card-content>
-      <ion-card-title>
-        {{card.title}}
-      </ion-card-title>
-    </ion-card-content>
-  </ion-card>
-  <!--<ion-list>
-    <ion-item *ngFor="let q of questions | async">
-    <p>{{q.text}}</p>
-    <p>Počet odpovědí: {{q.numAnswers}}</p>
-    </ion-item> 
-    
-  </ion-list> 
-
-  <button ion-button (click)="newQuestion()">Nová otázka </button>
-
-  !-->
+ 
 
 </ion-content>
