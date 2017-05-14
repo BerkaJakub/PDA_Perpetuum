@@ -3,10 +3,15 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+
 import { ItemDetailsPage } from '../pages/item-details/item-details';
+import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+import { Favouritelist } from '../pages/favouritelist/favouritelist';
 import { ListPage } from '../pages/list/list';
-import {QuestionCreate} from '../pages/question-create/question-create';
+import { Category } from '../pages/category/category';
+import { QuestionCreate } from '../pages/question-create/question-create';
+import { Profile } from '../pages/profile/profile';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,7 +36,11 @@ export const firebaseConfig = {
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    QuestionCreate
+    QuestionCreate,
+    Favouritelist,
+    Profile,
+    Category
+
   ],
   imports: [
     BrowserModule,
@@ -44,7 +53,10 @@ export const firebaseConfig = {
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    QuestionCreate
+    QuestionCreate, 
+    Favouritelist,
+    Profile,
+    Category
   ],
   providers: [
     StatusBar,

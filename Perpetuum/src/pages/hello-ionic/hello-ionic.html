@@ -1,27 +1,42 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
+  <ion-navbar color="primary">
+    
+    <ion-buttons start>
+      <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+    </ion-buttons>
+    
     <ion-title>Otázky</ion-title>
+
+    <ion-buttons end>
+      <button ion-button>
+      <ion-icon name="logo-bitcoin"></ion-icon>
+      15
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
 
-  
-  
-  <p>
-    <button ion-button color="primary" menuToggle>Hlavní nabídka</button>
-  </p>
- 
-  <ion-card *ngFor="let card of questions | async">
-    <ion-card-content>
-      <ion-card-title>
-        {{card.title}}
-      </ion-card-title>
-    </ion-card-content>
+  <ion-card color="primary">
+    <ion-card-header>
+      Název Otázky
+    </ion-card-header>
   </ion-card>
- 
+
+  <ion-list>
+    <button ion-item>odpověd 1</button>
+    <button ion-item>odpověd 2</button>
+    <button ion-item>odpověd 3</button>
+
+  </ion-list>
+
+  <p>
+    <button ion-button color="secondary" (click)="increment()">Přeskočit</button>
+  </p>
+
+
 </ion-content>

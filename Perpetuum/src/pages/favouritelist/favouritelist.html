@@ -1,4 +1,11 @@
+<!--
+  Generated template for the Favouritelist page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
 <ion-header>
+
   <ion-navbar color="primary">
     <ion-buttons start>
       <button ion-button menuToggle>
@@ -6,7 +13,7 @@
     </button>
     </ion-buttons>
     
-    <ion-title>Moje otázky</ion-title>
+    <ion-title>Oblíbené otázky</ion-title>
 
     <ion-buttons end>
       <button ion-button>
@@ -15,9 +22,11 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+
 </ion-header>
 
-<ion-content>
+
+<ion-content padding>
   <ion-list>
     <ion-item *ngFor="let q of questionTitles" (click)="itemTapped($event, q)">
       
@@ -28,10 +37,5 @@
       
     </ion-item>
   </ion-list>
-
-  <ion-fab right bottom>
-    <button ion-fab color="secondary" (click)="newQuestion()"><ion-icon name="add"></ion-icon></button>
-    
-  </ion-fab>
 
 </ion-content>
