@@ -9,20 +9,38 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HelloIonicPage {
   questions: FirebaseObjectObservable<any>;
+  answers: FirebaseObjectObservable<any>;
+  answersArray: Array<string>;
+  answer: FirebaseObjectObservable<any>;
+
   questionsAnswered: FirebaseListObservable<any>;
   questionsFlags: Array<{ id: number, flag: boolean }>;
   questionsArray: Array<{ id: number, title: string, numAnswers: string, dateTo: string, dateFrom: string, creatorID: number, categoryID: number, likes: number, dislikes: number, answers: any, answersNumbers: any }>;
   counter: number;
   questionToDisplay: Array<{ id: number, title: string, numAnswers: string, dateTo: string, dateFrom: string, creatorID: number, categoryID: number, likes: number, dislikes: number, answers: any, answersNumbers: any }>;
   question: any;
-  answersToDisplay: Array<any>;
+
+  title: string;
+  likes: number;
+  dislikes: number;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angFire: AngularFire) {
-    this.questions = angFire.database.object('/question');
-    this.questionsAnswered = angFire.database.list('/users/' + 0 + '/questionsAnswered/');
-    this.questionsFlags = [];
+    
     this.counter = 0;
-    this.questionsAnswered.subscribe(questionsAnswered => {
+    //this.questions = angFire.database.object('/question');
+    //this.questionsAnswered = angFire.database.list('/users/' + 0 + '/questionsAnswered/');
+    //this.questionsFlags = [];
+    this.questions = angFire.database.object('/question/' + this.counter);
+    this.questions.subscribe(question => {
+      this.title = question.title;
+      this.likes = question.likes;
+      this.dislikes = question.dislikes;
+    })
+    
+    this.answers = angFire.database.object('/question/' + this.counter + '/answers/');
+    
+   /* this.questionsAnswered.subscribe(questionsAnswered => {
       questionsAnswered.forEach(q => {
         console.log(q.$key);
         console.log(q.$value);
@@ -75,9 +93,9 @@ export class HelloIonicPage {
 
       });
     });
-
-    console.log(this.answersToDisplay);
-    console.log(this.questionToDisplay);
+*/
+   // console.log(this.answersToDisplay);
+   // console.log(this.questionToDisplay);
     
   }
 
@@ -85,17 +103,23 @@ export class HelloIonicPage {
 
   increment() {
 
-    if (this.counter == this.questionsArray.length - 1) {
+    if (this.counter == 1) {
       this.counter = 0;
     } else {
       this.counter++;
     }
+    this.questions = this.angFire.database.object('/question/' + this.counter);
+    this.questions.subscribe(question => {
+      this.title = question.title;
+      this.likes = question.likes;
+      this.dislikes = question.dislikes;
+    });
 
+    this.answers = this.angFire.database.object('/question/' + this.counter + '/answers/');
     console.log(this.counter);
-    this.questionToDisplay = this.findQuestionById(this.counter);
-    this.answersToDisplay = [];
-    this.answersToDisplay = this.questionToDisplay[0].answers;
-    console.log(this.answersToDisplay);
+    //this.questionToDisplay = this.findQuestionById(this.counter);
+    //this.answersToDisplay = this.questionToDisplay[0].answers;
+    //console.log(this.answersToDisplay);
   }
 
   findQuestionById(id) {
@@ -117,9 +141,23 @@ export class HelloIonicPage {
 
   submitAnswer(index){
     console.log("Odpovezeno na: ", index);
-    this.questionToDisplay[0].answersNumbers[index]++;
+    
+    this.answer = this.angFire.database.object('/question/' + this.counter + '/answersNumbers/');
+    let value;
+    this.answer.subscribe(answers =>{
+      console.log(answers);
+      value = answers[index];
+      
+    });
+    console.log(value++);
+    
+    this.answer.$ref.child(index).set(value);
+    
+
+
+  /*  this.questionToDisplay[0].answersNumbers[index]++;
     var questionID = <string><any>this.questionToDisplay[0].id;
-    this.questions.$ref.child(questionID).set(this.questionToDisplay[0]);
+    this.questions.$ref.child(questionID).set(this.questionToDisplay[0]);*/
     this.increment();
   }
 
