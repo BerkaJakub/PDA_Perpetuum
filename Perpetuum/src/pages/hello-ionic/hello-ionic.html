@@ -1,12 +1,12 @@
 <ion-header>
   <ion-navbar color="primary">
-    
+
     <ion-buttons start>
       <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     </ion-buttons>
-    
+
     <ion-title>Otázky</ion-title>
 
     <ion-buttons end>
@@ -20,23 +20,35 @@
 
 
 <ion-content padding>
+  <ion-list *ngFor="let item of questionToDisplay">
+    <ion-card color="primary">
+      <ion-card-header>
+        {{item.title}}
+      </ion-card-header>
+    </ion-card>
+  </ion-list>
 
-  <ion-card color="primary">
-    <ion-card-header>
-      Název Otázky
-    </ion-card-header>
-  </ion-card>
 
-  <ion-list>
-    <button ion-item>odpověd 1</button>
-    <button ion-item>odpověd 2</button>
-    <button ion-item>odpověd 3</button>
+  <ion-list *ngFor="let item of answersToDisplay; let i = index">
+
+    <button ion-item (click)="submitAnswer(i)">{{item}}</button>
 
   </ion-list>
 
+  <ion-list *ngFor="let item of questionToDisplay">
+    <ion-item>
+      <button ion-button (click)="submitLike()"><ion-icon name="thumbs-up" style="margin-right:3px"></ion-icon>: {{item.likes}}</button>
+      <button ion-button (click)="submitDislike()"><ion-icon name="thumbs-down" style="margin-right:3px"></ion-icon>: {{item.dislikes}}</button>
+    </ion-item>
+  </ion-list>
+
   <p>
-    <button ion-button color="secondary" (click)="increment()">Přeskočit</button>
+    <ion-buttons end>
+      <button ion-button color="secondary" (click)="increment()">Přeskočit</button>
+    </ion-buttons>
+
   </p>
+
 
 
 </ion-content>

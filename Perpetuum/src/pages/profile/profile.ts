@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import { QuestionCreate } from '../question-create/question-create';
 /**
  * Generated class for the Profile page.
  *
@@ -19,6 +19,10 @@ export class Profile {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Profile');
+  }
+
+  newQuestion() {
+    this.navCtrl.push(QuestionCreate);
   }
 
 }
