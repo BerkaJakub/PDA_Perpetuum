@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { Profile } from '../profile/profile';
 import { Badges } from '../badges/badges';
+import {QuestionCreate} from '../question-create/question-create';
 
 /**
  * Generated class for the Tabs tabs.
@@ -21,4 +22,12 @@ export class Tabs {
 
   constructor(public navCtrl: NavController) {}
 
+  newQuestion(){
+    this.navCtrl.push(QuestionCreate);
+    
+  }
+
 }
+
+
+

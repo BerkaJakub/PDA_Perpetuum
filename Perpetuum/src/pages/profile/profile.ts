@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
-
+import { QuestionCreate } from '../question-create/question-create';
 
 /**
  * Generated class for the Profile page.
@@ -22,20 +23,20 @@ export class Profile {
   numAnswers: number;
   numQuestions: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public angFire: AngularFire) {
+  constructor(private app: App, public navCtrl: NavController, public navParams: NavParams, public angFire: AngularFire) {
     this.user = angFire.database.object('/users/' + 0); // chci jenom toho naseho umeleho uzivatele
     this.numAnswers = 0;
     this.numQuestions = 0;
-    this.user.subscribe(u =>{
+    this.user.subscribe(u => {
       this.name = u.name;
       this.money = u.money;
       u.questionsAnswered.forEach(question => {
-        if(question == true){
+        if (question == true) {
           this.numAnswers++;
         }
       });
       u.myQuestions.forEach(question => {
-          this.numQuestions++;
+        this.numQuestions++;
       });
     });
   }
@@ -43,5 +44,12 @@ export class Profile {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Profile');
   }
+
+  newQuestion() {
+    this.app.getRootNav().push(QuestionCreate);
+
+  }
+
+
 
 }
