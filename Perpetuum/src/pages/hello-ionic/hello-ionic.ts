@@ -1,6 +1,16 @@
 import { Component } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Pipe, PipeTransform } from '@angular/core';
+
+
+@Pipe({ name: 'nonAnswered' })
+export class QuestionPipe implements PipeTransform {
+  transform(questions: any[]) {
+    return questions.filter(question => question.usersAnswered[0] === false); // filter only user 0, only questions he didnot answered
+  }
+}
+
 
 
 @Component({
@@ -12,98 +22,44 @@ export class HelloIonicPage {
   answers: FirebaseObjectObservable<any>;
   answersArray: Array<string>;
   answer: FirebaseObjectObservable<any>;
+  questionsAll: FirebaseObjectObservable<any>;
 
-  questionsAnswered: FirebaseListObservable<any>;
-  questionsFlags: Array<{ id: number, flag: boolean }>;
-  questionsArray: Array<{ id: number, title: string, numAnswers: string, dateTo: string, dateFrom: string, creatorID: number, categoryID: number, likes: number, dislikes: number, answers: any, answersNumbers: any }>;
   counter: number;
-  questionToDisplay: Array<{ id: number, title: string, numAnswers: string, dateTo: string, dateFrom: string, creatorID: number, categoryID: number, likes: number, dislikes: number, answers: any, answersNumbers: any }>;
-  question: any;
-
+  numberOfQuestions: number;
   title: string;
   likes: number;
   dislikes: number;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angFire: AngularFire) {
-    
+
     this.counter = 0;
-    //this.questions = angFire.database.object('/question');
-    //this.questionsAnswered = angFire.database.list('/users/' + 0 + '/questionsAnswered/');
-    //this.questionsFlags = [];
+    this.questionsAll = angFire.database.object('/question');
     this.questions = angFire.database.object('/question/' + this.counter);
     this.questions.subscribe(question => {
       this.title = question.title;
       this.likes = question.likes;
       this.dislikes = question.dislikes;
     })
-    
+    this.numberOfQuestions = 0;
     this.answers = angFire.database.object('/question/' + this.counter + '/answers/');
-    
-   /* this.questionsAnswered.subscribe(questionsAnswered => {
-      questionsAnswered.forEach(q => {
-        console.log(q.$key);
-        console.log(q.$value);
-        this.questionsFlags.push({
-          id: q.$key,
-          flag: q.$value
-        });
-      });
 
+    // Get number of questions
+    this.questionsAll.subscribe(question =>{
+      question.forEach(q =>{this.numberOfQuestions++;});
     });
-    this.question = {};
-    this.questionsArray = [];
-    this.questionToDisplay = [];
-    this.answersToDisplay = [];
-    this.questions.subscribe(items => {
-      items.forEach(item => {
-        this.questionsArray.push({
-          id: item.id,
-          title: item.title,
-          numAnswers: item.numAnswers,
-          dateTo: item.dateTo,
-          dateFrom: item.dateFrom,
-          creatorID: item.creatorID,
-          categoryID: item.categoryID,
-          likes: item.likes,
-          dislikes: item.dislikes,
-          answers: item.answers,
-          answersNumbers: item.answersNumbers
-        });
 
-        if (item.id == 0) {
-          this.questionToDisplay.push({
-            id: item.id,
-            title: item.title,
-            numAnswers: item.numAnswers,
-            dateTo: item.dateTo,
-            dateFrom: item.dateFrom,
-            creatorID: item.creatorID,
-            categoryID: item.categoryID,
-            likes: item.likes,
-            dislikes: item.dislikes,
-            answers: item.answers,
-            answersNumbers: item.answersNumbers
-          });
-          
-              this.answersToDisplay = item.answers;
-          
-          
-        }
-
-      });
-    });
-*/
-   // console.log(this.answersToDisplay);
-   // console.log(this.questionToDisplay);
     
+
+  
+
   }
 
 
 
   increment() {
 
-    if (this.counter == 1) {
+    if (this.counter == (this.numberOfQuestions-1)) {
       this.counter = 0;
     } else {
       this.counter++;
@@ -117,47 +73,38 @@ export class HelloIonicPage {
 
     this.answers = this.angFire.database.object('/question/' + this.counter + '/answers/');
     console.log(this.counter);
-    //this.questionToDisplay = this.findQuestionById(this.counter);
-    //this.answersToDisplay = this.questionToDisplay[0].answers;
-    //console.log(this.answersToDisplay);
+
   }
 
-  findQuestionById(id) {
-    return this.questionsArray.filter(question => question.id == id);
-  }
 
-  submitLike(){
+
+  submitLike() {
     console.log("Lajk");
-   
+
   }
 
-  submitDislike(){
+  submitDislike() {
     console.log("Dilajk");
   }
 
-  addToFavorites(){
+  addToFavorites() {
 
   }
 
-  submitAnswer(index){
+  submitAnswer(index) {
     console.log("Odpovezeno na: ", index);
-    
+
     this.answer = this.angFire.database.object('/question/' + this.counter + '/answersNumbers/');
     let value;
-    this.answer.subscribe(answers =>{
+    this.answer.subscribe(answers => {
       console.log(answers);
       value = answers[index];
-      
+
     });
     console.log(value++);
-    
+
     this.answer.$ref.child(index).set(value);
-    
 
-
-  /*  this.questionToDisplay[0].answersNumbers[index]++;
-    var questionID = <string><any>this.questionToDisplay[0].id;
-    this.questions.$ref.child(questionID).set(this.questionToDisplay[0]);*/
     this.increment();
   }
 

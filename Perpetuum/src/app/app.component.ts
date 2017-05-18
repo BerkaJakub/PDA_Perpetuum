@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { Category } from '../pages/category/category';
 import { QuestionCreate } from '../pages/question-create/question-create';
 import { Profile } from '../pages/profile/profile';
+import { Tabs } from '../pages/tabs/tabs';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,7 +22,7 @@ export class MyApp {
 
   // make HelloIonicPage the root (or first) page
   rootPage = HelloIonicPage;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
   userName: string;
   userEmail: string;
   userRef: FirebaseObjectObservable<any>;
@@ -36,11 +37,11 @@ export class MyApp {
     this.userRef = angFire.database.object('/users/' + 0);
     // set our app's pages
     this.pages = [
-      { title: 'Profil', component: Profile },
-      { title: 'Otázky', component: HelloIonicPage },
-      { title: 'Výber kategorií', component: Category },
-      { title: 'Oblíbené otázky', component: Favouritelist },
-      { title: 'Moje otázky', component: ListPage },
+      { title: 'Profil', component: Tabs , icon: "contact"},
+      { title: 'Otázky', component: HelloIonicPage, icon: "checkbox-outline" },
+      { title: 'Výber kategorií', component: Category, icon: "filing" },
+      { title: 'Oblíbené otázky', component: Favouritelist, icon: "heart-outline" },
+      { title: 'Moje otázky', component: ListPage, icon: "archive" },
      
     ];
 

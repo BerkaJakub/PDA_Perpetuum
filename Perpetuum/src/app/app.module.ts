@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 
+
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { Favouritelist } from '../pages/favouritelist/favouritelist';
@@ -11,6 +12,9 @@ import { ListPage } from '../pages/list/list';
 import { Category } from '../pages/category/category';
 import { QuestionCreate } from '../pages/question-create/question-create';
 import { Profile } from '../pages/profile/profile';
+import { Badges } from '../pages/badges/badges';
+import { Tabs } from '../pages/tabs/tabs';
+import {QuestionPipe} from '../pages/hello-ionic/hello-ionic';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -39,7 +43,10 @@ export const firebaseConfig = {
     QuestionCreate,
     Favouritelist,
     Profile,
-    Category
+    Category,
+    QuestionPipe,
+    Tabs,
+    Badges
 
   ],
   imports: [
@@ -56,7 +63,9 @@ export const firebaseConfig = {
     QuestionCreate, 
     Favouritelist,
     Profile,
-    Category
+    Category,
+    Tabs,
+    Badges
   ],
   providers: [
     StatusBar,

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 /**
  * Generated class for the Category page.
@@ -13,8 +14,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'category.html',
 })
 export class Category{
+  categories: FirebaseObjectObservable<any>;
+  userCategories: FirebaseObjectObservable<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public angFire: AngularFire) {
+    this.categories = angFire.database.object('/categories');
+    this.userCategories = angFire.database.object('/users/'+ 0 + '/categoryFilter/');
+
+
   }
 
   ionViewDidLoad() {

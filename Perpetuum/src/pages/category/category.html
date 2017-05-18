@@ -8,7 +8,7 @@
 
   <ion-navbar color="primary">
     <ion-title>Výběr kategorií</ion-title>
-     <button ion-button menuToggle>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
   </ion-navbar>
@@ -17,5 +17,12 @@
 
 
 <ion-content padding>
+
+  <ion-list *ngFor="let category of categories | async">
+    <ion-item>
+      <ion-label>{{category.title}}</ion-label>
+      <ion-checkbox ></ion-checkbox>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

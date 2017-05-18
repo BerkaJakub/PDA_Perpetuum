@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
-import { Profile } from './profile';
+import { Tabs } from './tabs';
 
 @NgModule({
   declarations: [
-    Profile,
+    Tabs,
   ],
   imports: [
-  ],
-  exports: [
-    Profile
   ]
 })
-export class ProfileModule {}
+export class TabsModule {}

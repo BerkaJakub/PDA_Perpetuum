@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
-import { Profile } from './profile';
+import { Badges } from './badges';
 
 @NgModule({
   declarations: [
-    Profile,
+    Badges,
   ],
   imports: [
   ],
   exports: [
-    Profile
+    Badges
   ]
 })
-export class ProfileModule {}
+export class BadgesModule {}

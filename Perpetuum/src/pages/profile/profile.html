@@ -8,15 +8,24 @@
 
   <ion-navbar color="primary">
     <ion-title>Profil</ion-title>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="under-tabs" padding>
+  <ion-avatar item-left>
+    <img width="64px" height="64px" src="https://cdn.planningpoker.com/img/cohn-2x-20150729.png">
+  </ion-avatar>
+
+  <p>{{name}}</p>
+  <p><ion-icon name="logo-bitcoin"></ion-icon>: {{money}}</p>
+
   <button ion-button (click)="newQuestion()">Vytvořit otázku</button>
+
+  <hr/>
+  <p>Odpovědí: {{numAnswers}}</p>
+  <p>Otázek:  {{numQuestions}}</p>
+
 
 </ion-content>
