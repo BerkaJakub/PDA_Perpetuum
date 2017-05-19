@@ -27,19 +27,19 @@ export class Favouritelist {
 
         this.questions.subscribe(items => {
           // items is an array
-          items.forEach(item => {
-            if (item.id == fav.$value) { // hodnota z uzivatelskeho favorites se musi rovna id otazky
+          Object.keys(items).forEach(key => {
+            if (items[key].id == fav.$value) { // hodnota z uzivatelskeho favorites se musi rovna id otazky
               this.questionTitles.push({
-                title: item.title,
-                numAnswers: item.numAnswers,
-                dateTo: item.dateTo,
-                dateFrom: item.dateFrom,
-                creatorID: item.creatorID,
-                categoryID: item.categoryID,
-                likes: item.likes,
-                dislikes: item.dislikes,
-                answers: item.answers,
-                answersNumbers: item.answersNumbers
+                title: items[key].title,
+                numAnswers: items[key].numAnswers,
+                dateTo: items[key].dateTo,
+                dateFrom: items[key].dateFrom,
+                creatorID: items[key].creatorID,
+                categoryID: items[key].categoryID,
+                likes: items[key].likes,
+                dislikes: items[key].dislikes,
+                answers: items[key].answers,
+                answersNumbers: items[key].answersNumbers
               });
             }
           });

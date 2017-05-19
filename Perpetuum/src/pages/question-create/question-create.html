@@ -1,30 +1,45 @@
 <ion-header>
-   <ion-navbar>
-      <ion-title>Nová otázka</ion-title>
-       </ion-navbar>
-        </ion-header>
-         <ion-content padding class="question-create">
-            <ion-item>
-               <ion-label stacked>Otázka:</ion-label>
-                <ion-input [(ngModel)]="name" type="text" placeholder="Text otázky"></ion-input>
-             </ion-item>
+  <ion-navbar color="primary">
+    <ion-title>Nová otázka</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="createQuestion(title, answerList, fromDate, toDate)"> Vytvořit </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="question-create">
+  <ion-item>
+    <ion-label stacked>Otázka:</ion-label>
+    <ion-input [(ngModel)]="title" type="text" placeholder="Text otázky"></ion-input>
+  </ion-item>
 
-            <ion-list>
-              <ion-item *ngFor="let answer of answerList; let i = index; trackBy: customTrackBy">
-                <ion-label stacked primary>Odpověď</ion-label>
-                <ion-input type="text" [(ngModel)]="answerList[i]"></ion-input>
-              </ion-item>
-            </ion-list>
 
-             <ion-item>
-                 <ion-label>Od:</ion-label>
-                 <ion-datetime displayFormat="DD. MM. YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="fromDate"></ion-datetime>
-             </ion-item> 
 
-             <ion-item>
-                 <ion-label>Do:</ion-label>
-                 <ion-datetime displayFormat="DD. MM. YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="toDate"></ion-datetime>
-             </ion-item> 
+  <ion-list>
+    <ion-item *ngFor="let answer of answerList; let i = index; trackBy: customTrackBy">
+      <ion-label stacked primary>Odpověď</ion-label>
+      <ion-input type="text" [(ngModel)]="answerList[i]"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button (click)="addAnswer()"><ion-icon name="add"></ion-icon>  </button>
+  <button ion-button (click)="deleteAnswer()"><ion-icon name="remove"></ion-icon>  </button>
+  <ion-item>
+    <ion-label>Kategorie:</ion-label>
+    <ion-select multiple="false">
+      <ion-option value="politika" checked="true">Politika</ion-option>
+      <ion-option value="sport">Sport</ion-option>
+      <ion-option value="PC">PC</ion-option>
 
-            <button block (click)="createQuestion(name, answerList, fromDate, toDate)"> Vytvořit </button>
-         </ion-content>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Od:</ion-label>
+    <ion-datetime displayFormat="DD. MM. YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="fromDate"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Do:</ion-label>
+    <ion-datetime displayFormat="DD. MM. YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="toDate"></ion-datetime>
+  </ion-item>
+
+
+</ion-content>

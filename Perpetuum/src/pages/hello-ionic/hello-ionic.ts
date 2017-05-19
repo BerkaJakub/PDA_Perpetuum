@@ -53,7 +53,7 @@ export class HelloIonicPage {
     // Get number of questions
     this.questionsAll.subscribe(question =>{
       this.numberOfQuestions = 0;
-      question.forEach(q =>{this.numberOfQuestions++;});
+      Object.keys(question).forEach(key =>{this.numberOfQuestions++;});
     });
 
 
