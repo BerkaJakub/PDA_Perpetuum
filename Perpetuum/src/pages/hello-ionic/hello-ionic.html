@@ -27,9 +27,15 @@
     </ion-card-header>
   </ion-card>
 
-  <ion-list *ngFor="let item of answers | async ; let i = index">
+  <ion-list [hidden]="answeredFlag" *ngFor="let item of answers | async ; let i = index">
 
     <button ion-item (click)="submitAnswer(i)">{{item}}</button>
+
+  </ion-list>
+
+  <ion-list [hidden]="!answeredFlag" *ngFor="let item of answers | async ; let i = index">
+
+    <button ng-class="($i == selectedAnswer) ? 'selected' : 'not-selected'" ion-item >{{item}} <span style="float: right;">{{answersNumbers[i]}} %</span></button>
 
   </ion-list>
 
@@ -37,29 +43,19 @@
   <button ion-button (click)="submitDislike()"><ion-icon name="thumbs-down" style="margin-right:3px"></ion-icon>: {{dislikes}}</button>
 
 
- 
 
-  <!--
-
-  <ion-list *ngFor="let item of answersToDisplay; let i = index">
-
-    <button ion-item (click)="submitAnswer(i)">{{item}}</button>
-
-  </ion-list>
-
-  <ion-list *ngFor="let item of questionToDisplay">
-    <ion-item>
-      <button ion-button (click)="submitLike()"><ion-icon name="thumbs-up" style="margin-right:3px"></ion-icon>: {{item.likes}}</button>
-      <button ion-button (click)="submitDislike()"><ion-icon name="thumbs-down" style="margin-right:3px"></ion-icon>: {{item.dislikes}}</button>
-    </ion-item>
-  </ion-list>
--->
   <p>
-    <ion-buttons end>
+    <ion-buttons [hidden]="answeredFlag" end>
       <button ion-button color="secondary" (click)="increment()">Přeskočit</button>
     </ion-buttons>
 
+    <ion-buttons [hidden]="!answeredFlag" end>
+      <button ion-button color="secondary" (click)="increment()">Další</button>
+    </ion-buttons>
+
   </p>
+
+ 
 
 
 
