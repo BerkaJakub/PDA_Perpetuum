@@ -9,3 +9,11 @@ page-hello-ionic {
 .selected{
     background-color: blue;
 }
+
+ion-card-header {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
