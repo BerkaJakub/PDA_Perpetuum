@@ -38,11 +38,13 @@
     <button ng-class="($i == selectedAnswer) ? 'selected' : 'not-selected'" ion-item >{{item}} <span style="float: right;">{{answersNumbers[i]}} %</span></button>
 
   </ion-list>
-
+<ion-buttons start>  
   <button ion-button (click)="submitLike()"><ion-icon name="thumbs-up" style="margin-right:3px"></ion-icon>: {{likes}}</button>
   <button ion-button (click)="submitDislike()"><ion-icon name="thumbs-down" style="margin-right:3px"></ion-icon>: {{dislikes}}</button>
-
-
+ </ion-buttons>
+<ion-buttons end>
+  <button ion-button (click)="addToFavourites()"><ion-icon name="heart" ></ion-icon></button>
+</ion-buttons>  
 
   <p>
     <ion-buttons [hidden]="answeredFlag" end>
