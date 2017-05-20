@@ -14,10 +14,24 @@ import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'a
 })
 export class QuestionCreate {
   questions: FirebaseObjectObservable<any>;
+  user: FirebaseObjectObservable<any>;
+  money: number;
+  notEnaughMoney: boolean;
   answerList = ['Odpověď 1', 'Odpověď 2', 'Odpověď 3', 'Odpověď 4'];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angFire: AngularFire) {
     this.questions = angFire.database.object('/question');
+    this.user = angFire.database.object('/users/' + 0);
+    this.user.subscribe(user =>{
+      this.money = user.money;
+
+    });
+    
+    if(this.money < 5){
+      this.notEnaughMoney = true;
+    }else{
+      this.notEnaughMoney = false;
+    }
 
   }
 
@@ -44,6 +58,10 @@ export class QuestionCreate {
     answerList.forEach((value, index) => {
       ansNumbers[index] = 0;
     });
+
+    let userAnswered = {
+      "0": false
+    }
     console.log(fromDate);
     console.log(toDate);
     let key = this.questions.$ref.push().key;
@@ -60,11 +78,13 @@ export class QuestionCreate {
       numAnswers: 0,
       categoryID: 0,
       id: key,
-      userAnswered: null
+      usersAnswered: userAnswered
     }
 
     console.log(newQuestion);
     this.questions.$ref.child(key).set(newQuestion);
+    this.money = this.money - 5;
+    this.user.$ref.child("money").set(this.money);
     this.navCtrl.pop();
 
   }

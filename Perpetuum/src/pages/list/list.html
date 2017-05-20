@@ -19,7 +19,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let q of questionTitles" (click)="itemTapped($event, q)">
+    <ion-item *ngFor="let q of questions | async" [hidden]="q.creatorID != 0" (click)="itemTapped($event, q)">
       
       <h2>{{q.title}}</h2>
       <h3>{{q.numAnswers}} odpovědí</h3>

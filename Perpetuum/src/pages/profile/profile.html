@@ -18,19 +18,19 @@
 </ion-header>
 
 
-<ion-content class="under-tabs" padding>
-  <ion-avatar item-left>
-    <img width="64px" height="64px" src="https://cdn.planningpoker.com/img/cohn-2x-20150729.png">
-  </ion-avatar>
+<ion-content text-center class="under-tabs" >
+  <div style="background-color: #3F51B5; color:white; height: 100vh" padding>
+  <p><img width="64px" height="64px" src="https://cdn.planningpoker.com/img/cohn-2x-20150729.png"></p>
+  
 
   <p>{{name}}</p>
-  <p><ion-icon name="logo-bitcoin"></ion-icon>: {{money}}</p>
+  <p>{{money}}<ion-icon style="margin-left: 8px" name="logo-bitcoin"></ion-icon></p>
 
-  <button ion-button (click)="newQuestion()">Vytvořit otázku</button>
+  <button ion-button color="secondary" (click)="newQuestion()">Vytvořit otázku</button>
 
   <hr/>
   <p>Odpovědí: {{numAnswers}}</p>
   <p>Otázek:  {{numQuestions}}</p>
 
-
+</div>
 </ion-content>

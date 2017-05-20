@@ -11,15 +11,24 @@
 
     <ion-buttons end>
       <button ion-button>
-      <ion-icon name="logo-bitcoin"></ion-icon>
-      15
+      
+      {{money}}
+      <ion-icon style="margin-left: 8px" name="logo-bitcoin"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
+<ion-content [hidden]="!noQuestions" padding>
+  <ion-card color="secondary">
+    <ion-card-header>
+      Žádné nové otázky
+    </ion-card-header>
+  </ion-card>
+  
+</ion-content>
 
-<ion-content padding>
+<ion-content [hidden]="noQuestions" padding>
 
   <ion-card color="primary">
     <ion-card-header>
@@ -35,16 +44,16 @@
 
   <ion-list [hidden]="!answeredFlag" *ngFor="let item of answers | async ; let i = index">
 
-    <button ng-class="($i == selectedAnswer) ? 'selected' : 'not-selected'" ion-item >{{item}} <span style="float: right;">{{answersNumbers[i]}} %</span></button>
+    <button ng-class="($i == selectedAnswer) ? 'selected' : 'not-selected'" ion-item>{{item}} <span style="float: right;">{{answersNumbers[i]}} %</span></button>
 
   </ion-list>
-<ion-buttons start>  
+
+
   <button ion-button (click)="submitLike()"><ion-icon name="thumbs-up" style="margin-right:3px"></ion-icon>: {{likes}}</button>
   <button ion-button (click)="submitDislike()"><ion-icon name="thumbs-down" style="margin-right:3px"></ion-icon>: {{dislikes}}</button>
- </ion-buttons>
-<ion-buttons end>
+
   <button ion-button (click)="addToFavourites()"><ion-icon name="heart" ></ion-icon></button>
-</ion-buttons>  
+
 
   <p>
     <ion-buttons [hidden]="answeredFlag" end>
@@ -57,7 +66,7 @@
 
   </p>
 
- 
+
 
 
 

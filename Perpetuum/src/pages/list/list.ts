@@ -11,36 +11,13 @@ import { QuestionCreate } from '../question-create/question-create';
 export class ListPage {
 
 
-  questions: FirebaseObjectObservable<any>;
+  questions: FirebaseListObservable<any>;
   questionTitles: Array<{ title: string, numAnswers: string, dateTo: string, dateFrom: string, creatorID: number, categoryID: number, likes: number, dislikes: number, answers: any, answersNumbers: any }>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, angFire: AngularFire) {
-    this.questions = angFire.database.object('/question');
+    this.questions = angFire.database.list('/question');
 
-    this.questionTitles = [];
-
-    this.questions.subscribe(items => {
-      // items is an array
-
-     
-    Object.keys(items).forEach(key => {
-        if (items[key].creatorID == 0) { // podminka kdyz je otazka moje, id uzivatele je 0
-          this.questionTitles.push({
-            title: items[key].title,
-            numAnswers: items[key].numAnswers,
-            dateTo: items[key].dateTo,
-            dateFrom: items[key].dateFrom,
-            creatorID: items[key].creatorID,
-            categoryID: items[key].categoryID,
-            likes: items[key].likes,
-            dislikes: items[key].dislikes,
-            answers: items[key].answers,
-            answersNumbers: items[key].answersNumbers
-          });
-        }
-      });
-
-    });
+    
 
 
   }

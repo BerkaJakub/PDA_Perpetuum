@@ -30,12 +30,10 @@ export class Profile {
     this.user.subscribe(u => {
       this.name = u.name;
       this.money = u.money;
-      u.questionsAnswered.forEach(question => {
-        if (question == true) {
+      Object.keys(u.questionsAnswered).forEach(key => {
           this.numAnswers++;
-        }
       });
-      u.myQuestions.forEach(question => {
+      Object.keys(u.myQuestions).forEach(key => {
         this.numQuestions++;
       });
     });
