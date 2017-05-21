@@ -243,22 +243,21 @@ export class HelloIonicPage {
     value++;
 
 
-   /* this.user = this.angFire.database.object('/users/' + 0);
+    let incrementedMoney: any;
+    this.user = this.angFire.database.object('/users/' + 0);
     this.user.subscribe(user => {
-      this.money = user.money;
+      incrementedMoney = user.money;
 
     });
+
     // Increment money
-    
-    let incrementedMoney: any;
-    incrementedMoney = this.money;
-    console.log(this.money);
+    incrementedMoney++;
     
       this.user.$ref.child('/').on('value', function (u) {
         u.ref.child('money').set(incrementedMoney);
       });
 
-    */
+    
     let numberOfAnswers: any;
 
     this.questions = this.angFire.database.object('/question/' + this.notAnswered[this.counter]);
