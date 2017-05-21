@@ -86,7 +86,7 @@ export class HelloIonicPage {
         });
 
       }
-    }, 2000);
+    }, 1000);
 
     this.user = angFire.database.object('/users/' + 0);
     this.user.subscribe(user => {
@@ -165,7 +165,7 @@ export class HelloIonicPage {
         
 
       }
-    }, 1000);
+    }, 500);
   }
 
   ionViewDidLoad() {
