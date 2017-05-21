@@ -10,16 +10,23 @@ import { ItemDetailsPage } from '../item-details/item-details';
   templateUrl: 'favouritelist.html',
 })
 export class Favouritelist {
-
+  user: FirebaseObjectObservable<any>;
   questions: FirebaseObjectObservable<any>;
   favorites: FirebaseListObservable<any>;
   questionTitles: Array<{ title: string, numAnswers: string, dateTo: string, dateFrom: string, creatorID: number, categoryID: number, likes: number, dislikes: number, answers: any, answersNumbers: any }>;
-
+  money: number;
   constructor(public navCtrl: NavController, public navParams: NavParams, angFire: AngularFire) {
     this.questions = angFire.database.object('/question');
     let uid = 0;
     this.favorites = angFire.database.list('/users/' + uid + '/favQuestions/');
     this.questionTitles = [];
+
+
+    this.user = angFire.database.object('/users/' + 0);
+    this.user.subscribe(user => {
+      this.money = user.money;
+
+    });
 
     this.favorites.subscribe(favorites => {
       favorites.forEach(fav => {

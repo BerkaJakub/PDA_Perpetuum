@@ -10,14 +10,19 @@ import { QuestionCreate } from '../question-create/question-create';
 })
 export class ListPage {
 
-
+  user: FirebaseObjectObservable<any>;
   questions: FirebaseListObservable<any>;
   questionTitles: Array<{ title: string, numAnswers: string, dateTo: string, dateFrom: string, creatorID: number, categoryID: number, likes: number, dislikes: number, answers: any, answersNumbers: any }>;
+  money: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, angFire: AngularFire) {
     this.questions = angFire.database.list('/question');
 
-    
+    this.user = angFire.database.object('/users/' + 0);
+    this.user.subscribe(user => {
+      this.money = user.money;
+
+    });
 
 
   }
