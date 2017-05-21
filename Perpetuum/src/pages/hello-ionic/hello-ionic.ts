@@ -169,6 +169,7 @@ export class HelloIonicPage {
   }
 
   ionViewDidLoad() {
+    
     this.findNotAnswered();
 
   }

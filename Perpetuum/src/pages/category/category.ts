@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
-
+import { App } from 'ionic-angular';
+import {HelloIonicPage} from '../hello-ionic/hello-ionic';
 /**
  * Generated class for the Category page.
  *
@@ -17,7 +18,7 @@ export class Category{
   categories: FirebaseObjectObservable<any>;
   userCategories: FirebaseObjectObservable<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public angFire: AngularFire) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public angFire: AngularFire, public app: App) {
     this.categories = angFire.database.object('/categories');
     this.userCategories = angFire.database.object('/users/'+ 0 + '/categoryFilter/');
 
@@ -29,7 +30,8 @@ export class Category{
   }
 
   goBack(){
-    this.navCtrl.pop();
+    this.navCtrl.setRoot(HelloIonicPage);
+    this.navCtrl.popToRoot();
   }
 
 }

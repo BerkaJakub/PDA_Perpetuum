@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { ItemDetailsPage } from '../item-details/item-details';
 import { QuestionCreate } from '../question-create/question-create';
+import {HelloIonicPage} from '../hello-ionic/hello-ionic';
+
 
 @Component({
   selector: 'page-list',
@@ -17,7 +19,7 @@ export class ListPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, angFire: AngularFire) {
     this.questions = angFire.database.list('/question');
 
-    
+
 
 
   }
@@ -30,6 +32,11 @@ export class ListPage {
 
   newQuestion() {
     this.navCtrl.push(QuestionCreate);
+  }
+
+  goBack() {
+    this.navCtrl.setRoot(HelloIonicPage);
+    this.navCtrl.popToRoot();
   }
 
 }

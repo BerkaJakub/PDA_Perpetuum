@@ -7,11 +7,14 @@
 <ion-header>
 
   <ion-navbar color="primary">
-     <button (click)="goBack()">
+    <ion-buttons start>
+      <button ion-button  (click)="goBack()">
       <ion-icon name="arrow-back"></ion-icon>
     </button>
+    </ion-buttons>
+
     <ion-title>Výběr kategorií</ion-title>
-   
+
   </ion-navbar>
 
 </ion-header>
@@ -22,7 +25,7 @@
   <ion-list *ngFor="let category of categories | async">
     <ion-item>
       <ion-label>{{category.title}}</ion-label>
-      <ion-checkbox ></ion-checkbox>
+      <ion-checkbox></ion-checkbox>
     </ion-item>
   </ion-list>
 

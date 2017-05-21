@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { App } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { QuestionCreate } from '../question-create/question-create';
-
+import {HelloIonicPage} from '../hello-ionic/hello-ionic';
 /**
  * Generated class for the Profile page.
  *
@@ -31,7 +31,7 @@ export class Profile {
       this.name = u.name;
       this.money = u.money;
       Object.keys(u.questionsAnswered).forEach(key => {
-          this.numAnswers++;
+        this.numAnswers++;
       });
       Object.keys(u.myQuestions).forEach(key => {
         this.numQuestions++;
@@ -46,6 +46,11 @@ export class Profile {
   newQuestion() {
     this.app.getRootNav().push(QuestionCreate);
 
+  }
+
+  goBack() {
+    this.navCtrl.setRoot(HelloIonicPage);
+    this.navCtrl.popToRoot();
   }
 
 

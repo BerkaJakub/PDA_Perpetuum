@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { ItemDetailsPage } from '../item-details/item-details';
-
+import {HelloIonicPage} from '../hello-ionic/hello-ionic';
 
 
 @Component({
@@ -61,6 +61,11 @@ export class Favouritelist {
     this.navCtrl.push(ItemDetailsPage, {
       q: q
     });
+  }
+
+   goBack() {
+    this.navCtrl.setRoot(HelloIonicPage);
+    this.navCtrl.popToRoot();
   }
 
 }
