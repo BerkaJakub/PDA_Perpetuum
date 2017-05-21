@@ -19,7 +19,6 @@ export class ItemDetailsPage {
   users: FirebaseObjectObservable<any>;
   userName: string;
   statistics: Array<{ title: string, count: number }>;
-  money: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, angFire: AngularFire) {
     // If we navigated to this page, we will have an item available as a nav param
@@ -33,7 +32,6 @@ export class ItemDetailsPage {
       users.forEach(user => {
         if (user.userID == this.selectedItem.creatorID) { // podminka kdyz je otazka moje, id uzivatele je 0
           this.userName = user.name;
-          this.money = user.money;
         }
       });
 

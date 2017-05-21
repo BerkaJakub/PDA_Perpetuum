@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { App } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { QuestionCreate } from '../question-create/question-create';
@@ -10,7 +10,7 @@ import { QuestionCreate } from '../question-create/question-create';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-
+@IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
@@ -28,12 +28,10 @@ export class Profile {
     this.numAnswers = 0;
     this.numQuestions = 0;
     this.user.subscribe(u => {
-      console.log(u);
       this.name = u.name;
       this.money = u.money;
       Object.keys(u.questionsAnswered).forEach(key => {
           this.numAnswers++;
-          
       });
       Object.keys(u.myQuestions).forEach(key => {
         this.numQuestions++;

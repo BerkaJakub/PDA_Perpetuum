@@ -44,7 +44,7 @@ export class HelloIonicPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angFire: AngularFire,
     public loadingCtrl: LoadingController, private alertCtrl: AlertController) {
-      this.money = 0;
+
     this.counter = 0;
     this.answeredFlag = false;
     this.likedFlag = false;
@@ -90,7 +90,6 @@ export class HelloIonicPage {
 
     this.user = angFire.database.object('/users/' + 0);
     this.user.subscribe(user => {
-      console.log(user);
       this.money = user.money;
 
     });
@@ -262,7 +261,6 @@ export class HelloIonicPage {
     // Increment money
     this.money = this.money + 1;
      this.user.$ref.child('/').on('value', function (user) {
-      
       user.ref.child("money").set(this.money);
     });
     
