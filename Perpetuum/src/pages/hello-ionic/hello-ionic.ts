@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { Pipe, PipeTransform } from '@angular/core';
 
 
@@ -93,6 +93,7 @@ export class HelloIonicPage {
       this.money = user.money;
 
     });
+    
 
 
   }
@@ -127,10 +128,12 @@ export class HelloIonicPage {
 
 
   increment() {
+    
+    
     this.findNotAnswered();
     let loading = this.loadingCtrl.create({
       content: 'Čekejte prosím...'
-    });
+    }); 
 
     loading.present();
     setTimeout(() => {
@@ -141,7 +144,7 @@ export class HelloIonicPage {
       } else {
         this.counter++;
       }
-
+      
       if (!this.noQuestions) {
         console.log(this.counter);
         this.questions = this.angFire.database.object('/question/' + this.notAnswered[this.counter]);
@@ -157,6 +160,9 @@ export class HelloIonicPage {
         this.answeredFlag = false;
         this.likedFlag = false;
         this.dislikedFlag = false;
+        
+       
+        
 
       }
     }, 1000);
@@ -164,6 +170,7 @@ export class HelloIonicPage {
 
   ionViewDidLoad() {
     this.findNotAnswered();
+
   }
 
 
@@ -222,6 +229,7 @@ export class HelloIonicPage {
   }
 
   submitAnswer(index) {
+    this.money = this.money + 1;
     console.log("Odpovezeno na: ", index);
     this.selectedAnswer = index;
 
@@ -234,6 +242,23 @@ export class HelloIonicPage {
     });
     value++;
 
+
+   /* this.user = this.angFire.database.object('/users/' + 0);
+    this.user.subscribe(user => {
+      this.money = user.money;
+
+    });
+    // Increment money
+    
+    let incrementedMoney: any;
+    incrementedMoney = this.money;
+    console.log(this.money);
+    
+      this.user.$ref.child('/').on('value', function (u) {
+        u.ref.child('money').set(incrementedMoney);
+      });
+
+    */
     let numberOfAnswers: any;
 
     this.questions = this.angFire.database.object('/question/' + this.notAnswered[this.counter]);
@@ -258,27 +283,28 @@ export class HelloIonicPage {
         this.answersNumbers[index] = percent;
       });
     });
-    // Increment money
-    this.money = this.money + 1;
-     this.user.$ref.child('/').on('value', function (user) {
-      user.ref.child("money").set(this.money);
-    });
-    
-     let answeredQuestions: any;
+
+
+    let answeredQuestions: any;
     this.user.subscribe(user => {
       answeredQuestions = user.questionsAnswered;
     });
     answeredQuestions.push(this.questionID);
-    this.user.$ref.child('questionsAnswered').set(answeredQuestions);
+
+    this.user.$ref.child('/').on('value', function (user) {
+      user.ref.child('questionsAnswered').set(answeredQuestions);
+
+
+    });
 
     this.answeredFlag = true;
     // Update array of non answered questions
-    this.findNotAnswered();
+    /*this.findNotAnswered();
     if (this.notAnswered.length == 0) {
       this.noQuestions = true;
     } else {
       this.noQuestions = false;
-    }
+    }*/
 
   }
 
