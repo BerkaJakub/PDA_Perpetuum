@@ -33,8 +33,10 @@
         <ion-input type="text" [(ngModel)]="answerList[i]"></ion-input>
       </ion-item>
     </ion-list>
+    <ion-buttons end>
     <button ion-button (click)="addAnswer()"><ion-icon name="add"></ion-icon>  </button>
     <button ion-button (click)="deleteAnswer()"><ion-icon name="remove"></ion-icon>  </button>
+    </ion-buttons>
     <ion-item>
       <ion-label>Kategorie:</ion-label>
       <ion-select multiple="false">

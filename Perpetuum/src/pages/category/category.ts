@@ -28,4 +28,8 @@ export class Category{
     console.log('ionViewDidLoad Category');
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+
 }
