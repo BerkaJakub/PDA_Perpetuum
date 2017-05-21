@@ -45,7 +45,7 @@
 
   <ion-list [hidden]="!answeredFlag" *ngFor="let item of answers | async ; let i = index">
 
-    <button ng-class="($i == selectedAnswer) ? 'selected' : 'not-selected'" ion-item>{{item}} <span style="float: right;">{{answersNumbers[i]}} %</span></button>
+    <button [color]="isSelected(i)? 'primary' : null" ion-item>{{item}} <span style="float: right;">{{answersNumbers[i]}} %</span></button>
 
   </ion-list>
 

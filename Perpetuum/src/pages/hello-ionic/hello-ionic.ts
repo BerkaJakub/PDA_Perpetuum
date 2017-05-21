@@ -307,5 +307,12 @@ export class HelloIonicPage {
 
   }
 
+  isSelected(i){
+    if(i == this.selectedAnswer){
+      return true;
+    }
+    return false;
+  }
+
 
 }
